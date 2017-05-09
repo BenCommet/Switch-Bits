@@ -18,6 +18,19 @@ class ButtonController:
 		self.buttons[switch_ID] = is_on
 		if switch_ID < 3:
 			self.modeSelector(self.buttons[0], self.buttons[1], self.buttons[2])
+		else:
+			if switch_ID == 3:
+				self.currentMode.button_3(is_on)
+			elif switch_ID == 4:
+				self.currentMode.button_4(is_on)
+			elif switch_ID == 5:
+				self.currentMode.button_5(is_on)
+			elif switch_ID == 6:
+				self.currentMode.button_6(is_on)
+			elif switch_ID == 7:
+				self.currentMode.button_7(is_on)
+			elif switch_ID == 8:
+				self.currentMode.button_8(is_on)
 
 
 	def modeSelector(self, bit_0, bit_1, bit_2):

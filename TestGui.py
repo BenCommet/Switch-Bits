@@ -1,7 +1,8 @@
 from Tkinter import *
 from ButtonController import ButtonController
+buttCon = ButtonController()
+buttCon.switchFlipped(4, True)
 
-# buttControl = ButtonController()
 buttons = []
 def add_callback(control, fun):
     def inner():
@@ -14,7 +15,9 @@ def buttonPress(butt):
     else:
         butt.configure(bg='white')
     # buttControl.switchFlipped(butt.id, butt.is_up)
+    buttCon.switchFlipped(butt.id, butt.is_up)
     butt.is_up = not butt.is_up
+
 
 root = Tk()
 buttons = []
