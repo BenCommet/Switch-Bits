@@ -7,15 +7,15 @@ from Mode_5 import Mode_5
 from Mode_6 import Mode_6
 from Mode_7 import Mode_7
 
-
 class ButtonController:
 	def __init__(self):
 		print("duck")
 		self.buttons = [False, False, False, False, False, False, False, False, False]
 		self.currentMode = Mode_0()
 
-	def switchFlipped(self, switch_ID, is_on):
-		self.buttons[switch_ID] = is_on
+	def switchFlipped(self, switch_ID):
+		self.buttons[switch_ID] = not self.buttons[switch_ID]
+		is_on = self.buttons[switch_ID]
 		if switch_ID < 3:
 			self.modeSelector(self.buttons[0], self.buttons[1], self.buttons[2])
 		else:

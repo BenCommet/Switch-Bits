@@ -1,7 +1,6 @@
 from Tkinter import *
 from ButtonController import ButtonController
 buttCon = ButtonController()
-buttCon.switchFlipped(4, True)
 
 buttons = []
 def add_callback(control, fun):
@@ -15,7 +14,7 @@ def buttonPress(butt):
     else:
         butt.configure(bg='white')
     # buttControl.switchFlipped(butt.id, butt.is_up)
-    buttCon.switchFlipped(butt.id, butt.is_up)
+    buttCon.switchFlipped(butt.id)
     butt.is_up = not butt.is_up
 
 
@@ -27,7 +26,7 @@ buttons = []
 
 for curRow in range(3):
     for curCol in range(3):
-        b = Button( text='Button '+str(curRow * 3 + curCol), bg="white")
+        b = Button( text='', bg="white", height= 10, width=10)
         b.id = curRow * 3 + curCol
         b.is_up = False
         add_callback(b, buttonPress)

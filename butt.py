@@ -1,4 +1,3 @@
-from ButtonController import ButtonController
+from WeatherProcess import WeatherProcess
 
-butt = ButtonController()
-butt.switchFlipped(4, True)
+weather = WeatherProcess()
