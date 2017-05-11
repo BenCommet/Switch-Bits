@@ -6,23 +6,29 @@ from gtts import gTTS
 # import vlc
 import pyglet
 import pyowm
+from WeatherProcess import WeatherProcess
+from AudioThread import AudioThread
+
 
 class Mode_1:
 	def __init__(self):
 		print('Mode 1 initiated')
 		self.engine = pyttsx.init()
 		self.owm = pyowm.OWM('f81b4b9735f0c61ec1f31d704b621479')
-		self.weather = self.owm.weather_at_place('Grand Rapids, us')
+		self.weatherProcess = WeatherProcess()
+		self.weatherProcess.setDaemon(True)
+		self.weatherProcess.start()
 
 	def button_3(self, is_on):
 		if is_on:
-			self.greeting()
-		else:
-			self.goodbye()
+			self.weatherProcess.semaphore.acquire()
+			audioThread = AudioThread("temp/tomorrowForecast.mp3")
+			audioThread.setDaemon(True)
+			audioThread.start()
+			self.weatherProcess.semaphore.release()
 
 	def button_4(self, is_on):
 		print('mode 1 button 4')
-		currWeather = self.weather.get_weather()
 		print currWeather
 
 	def button_5(self, s_on):
@@ -47,8 +53,6 @@ class Mode_1:
 		tts.save("good.mp3")
 		audio = pyglet.media.load("good.mp3", streaming=False)
 		audio.play()
-		os.remove("good.mp3")
-		os.system('cvlc --play-and-exit' + 'good.mp3')
 
 
 	def goodbye(self):
