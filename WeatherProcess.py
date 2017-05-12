@@ -40,7 +40,7 @@ class WeatherProcess(threading.Thread):
         tts = gTTS(text='Tomorrow will have a high of ' + str(self.tomorrowHigh) + 'degrees and a low of ' + str(self.tomorrowLow), lang='en')
         tts.save("temp/tomorrowForecast.mp3")
 
-        tts = gTTS(text="It is currently " + str(self.currentStatus) + "outside", lang = "en")
+        tts = gTTS(text="It is currently " + str(self.currentStatus) + "and" + str(self.currentTemperature) + "outside", lang = "en")
         tts.save("temp/currentStatus.mp3")
         self.semaphore.release()
 

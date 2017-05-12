@@ -6,12 +6,17 @@ from Mode_4 import Mode_4
 from Mode_5 import Mode_5
 from Mode_6 import Mode_6
 from Mode_7 import Mode_7
+from WeatherProcess import WeatherProcess
+
 
 class ButtonController:
 	def __init__(self):
 		print("duck")
 		self.buttons = [False, False, False, False, False, False, False, False, False]
 		self.currentMode = Mode_0()
+		self.weather = WeatherProcess()
+		self.weather.setDaemon(True)
+		self.weather.start()
 
 	def switchFlipped(self, switch_ID):
 		self.buttons[switch_ID] = not self.buttons[switch_ID]
@@ -53,6 +58,6 @@ class ButtonController:
 					self.currentMode = Mode_2()
 			else:
 				if bit_2:
-					self.currentMode = Mode_1()
+					self.currentMode = Mode_1(self.weather)
 				else:
 					self.currentMode = Mode_0()
